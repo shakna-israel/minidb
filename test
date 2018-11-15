@@ -1,4 +1,24 @@
 #!/bin/sh
 
-echo 'NOT YET IMPLEMENTED'
-exit 1
+# Test 1: Database Creation
+
+tmp=$(mktemp)
+
+./minidb new "$tmp"
+data="$(hexdump "$tmp")"
+expected="$(printf '0000000 444d 0042                              \n0000003')"
+
+# Compare, byte for byte.
+if [ "$data" != "$expected" ]; then
+  echo 'Did not create a new DB correctly.' >&2
+  echo 'Invalid Header:' >&2
+  echo "$data" >&2
+  echo 'Expected:' >&2
+  echo "$expected" >&2
+  rm "$tmp"
+  exit 1
+fi
+
+rm "$tmp"
+
+# End test 1.
