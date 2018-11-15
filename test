@@ -21,4 +21,26 @@ fi
 
 rm "$tmp"
 
-# End test 1.
+# End test 2.
+
+# Test 1: Stat Non-Database
+
+tmp=$(mktemp)
+
+data="$(./minidb stat "$tmp")"
+expected=$(printf 'File Statistics:\nNot a valid miniDB database file.')
+
+# Compare, byte for byte.
+if [ "$data" != "$expected" ]; then
+  echo 'Did not stat a non-database file correctly.' >&2
+  echo 'Received:' >&2
+  echo "$data" >&2
+  echo 'Expected:' >&2
+  echo "$expected" >&2
+  rm "$tmp"
+  exit 1
+fi
+
+rm "$tmp"
+
+# End test 2.
