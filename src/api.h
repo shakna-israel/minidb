@@ -25,7 +25,16 @@ size_t count_tables(FILE* f);
 
 size_t count_records(FILE* f);
 
+int is_minidb(FILE* f);
+
 void stat(FILE* f);
+
+// Past Versions:
+//
+const char* version = "Silicon Dioxide"; //i.e. Sand. It's weak and crumbly.
+const size_t version_no = 0;
+
+void cli_help();
 
 #define MINIDB_API
 #endif

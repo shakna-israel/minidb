@@ -113,11 +113,6 @@ void stat(FILE* f) {
   }
 }
 
-// Past Versions:
-//
-const char* version = "Silicon Dioxide"; //i.e. Sand. It's weak and crumbly.
-const size_t version_no = 0;
-
 void cli_help() {
   printf("%s\n", "miniDB - Help");
   printf("%s%s - %d\n", "Version: ", version, version_no);
