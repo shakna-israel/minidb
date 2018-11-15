@@ -12,7 +12,7 @@ Current testing status: [![Build Status](https://travis-ci.com/shakna-israel/min
 
 Requires a C99 capable compiler.
 
-For Windows, requires MSVC < VS2013 (_MSC_VER >= 1800). (Earlier versions didn't support C99 size_t format specifiers.) (Or use a non-Microsoft compiler with proper C99 support.)
+For Windows, requires MSVC VS2013+ (_MSC_VER >= 1800). (Earlier versions didn't support C99 size_t format specifiers.) (Or use a non-Microsoft compiler with proper C99 support.)
 
 [TCC](https://bellard.org/tcc/) is explicitly supported, because I love the thing.
 
