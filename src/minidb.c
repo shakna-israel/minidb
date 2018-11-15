@@ -80,6 +80,20 @@ size_t count_records(FILE* f) {
   return c;
 }
 
+int new_db(FILE* f) {
+  // Write our 'MDB' header we
+  // use to identify a DB.
+
+  // Go to start of file.
+  fseek(f, 0, SEEK_SET);
+  fputc('M', f);
+  fputc('D', f);
+  fputc('B', f);
+  // Go to start of file.
+  fseek(f, 0, SEEK_SET);
+  return 1;
+}
+
 int is_minidb(FILE* f) {
   // Check if the file has the 'MDB' header
   // we use to identify our DB.
@@ -128,7 +142,36 @@ int main(int argc, char* argv[]) {
       // would make sense anyway.
       cli_help();
     }
-    // minidb new FILE
+    else if(argc == 3) {
+      // minidb new FILE
+      if(argv[1][0] == 'n' &&
+         argv[1][1] == 'e' &&
+         argv[1][2] == 'w') {
+        FILE* f = fopen(argv[2], "w");
+        if(f == NULL) {
+          fprintf(stderr, "%s\n", "Unable to create or open file. Do you have permission?");
+          return 1;
+        }
+        new_db(f);
+        fclose(f);
+      }
+      // minidb stat FILE
+      else if(argv[1][0] == 's' &&
+              argv[1][1] == 't' &&
+              argv[1][2] == 'a' &&
+              argv[1][3] == 't') {
+        FILE* f = fopen(argv[2], "r");
+        if(f == NULL) {
+          fprintf(stderr, "%s\n", "Unable to open file for reading. Do you have permission? Does it exist?");
+          return 1;
+        }
+        stat(f);
+        fclose(f);
+      }
+      else {
+        cli_help();
+      }
+    }
     // minidb modify FILE new table NAME COLUMNS
     // minidb modify FILE rename table NAME
     // minidb modify FILE resize table NAME COLUMNS
