@@ -18,6 +18,7 @@ if [ "$data" != "$expected" ]; then
   rm "$tmp"
   exit 1
 fi
+echo 'Pass: 1. Database Creation'
 
 rm "$tmp"
 
@@ -40,6 +41,7 @@ if [ "$data" != "$expected" ]; then
   rm "$tmp"
   exit 1
 fi
+echo 'Pass: 2. Stat Non-Database'
 
 rm "$tmp"
 
@@ -63,6 +65,7 @@ if [ "$data" != "$expected" ]; then
   rm "$tmp"
   exit 1
 fi
+echo 'Pass: 3. Stat Empty Database'
 
 rm "$tmp"
 
