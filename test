@@ -21,9 +21,9 @@ fi
 
 rm "$tmp"
 
-# End test 2.
+# End test 1.
 
-# Test 1: Stat Non-Database
+# Test 2: Stat Non-Database
 
 tmp=$(mktemp)
 
@@ -44,3 +44,26 @@ fi
 rm "$tmp"
 
 # End test 2.
+
+# Test 3: Stat Empty Database
+
+tmp=$(mktemp)
+./minidb new "$tmp"
+
+data="$(./minidb stat "$tmp")"
+expected=$(printf 'File Statistics:\nTables: 0\nRecords: 0')
+
+# Compare, byte for byte.
+if [ "$data" != "$expected" ]; then
+  echo 'Did not stat an empty database file correctly.' >&2
+  echo 'Received:' >&2
+  echo "$data" >&2
+  echo 'Expected:' >&2
+  echo "$expected" >&2
+  rm "$tmp"
+  exit 1
+fi
+
+rm "$tmp"
+
+# End test 3.
