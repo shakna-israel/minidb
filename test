@@ -70,3 +70,29 @@ echo 'Pass: 3. Stat Empty Database'
 rm "$tmp"
 
 # End test 3.
+
+# Test 4: Adding a table
+
+tmp=$(mktemp)
+
+./minidb new "$tmp"
+./minidb modify "$tmp" new table HelloWorld 10
+
+data="$(hexdump "$tmp")"
+expected="$(printf '0000000 444d 1d42 6548 6c6c 576f 036f 040a     \n000000e')"
+
+# Compare, byte for byte.
+if [ "$data" != "$expected" ]; then
+  echo 'Did not stat an empty database file correctly.' >&2
+  echo 'Received:' >&2
+  echo "$data" >&2
+  echo 'Expected:' >&2
+  echo "$expected" >&2
+  rm "$tmp"
+  exit 1
+fi
+echo 'Pass: 4. Adding a table'
+
+rm "$tmp"
+
+# End test 4

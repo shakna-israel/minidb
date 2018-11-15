@@ -1,6 +1,7 @@
 #ifndef MINIDB_API
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define GROUP_SEP 29
 #define RECORD_SEP 30

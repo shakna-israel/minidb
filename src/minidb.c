@@ -14,6 +14,7 @@ int new_table(FILE* f, const char* name, size_t name_length, size_t columns) {
   // Go to end of file.
   while(1) {
     if(feof(f)){break;}
+    fgetc(f);
   }
   // Indicate new group
   fputc(GROUP_SEP, f);
@@ -181,7 +182,7 @@ int main(int argc, char* argv[]) {
          argv[1][3] == 'i' &&
          argv[1][4] == 'f' &&
          argv[1][5] == 'y') {
-        FILE* f = fopen(argv[2], "w");
+        FILE* f = fopen(argv[2], "r+");
         if(f == NULL) {
           fprintf(stderr, "%s\n", "Unable to open file for modification. Do you have permission?");
           return 1;
@@ -194,7 +195,24 @@ int main(int argc, char* argv[]) {
         if(argv[3][0] == 'n' &&
            argv[3][1] == 'e' &&
            argv[3][2] == 'w') {
-          // TODO
+          if(argv[4][0] == 't' &&
+             argv[4][1] == 'a' &&
+             argv[4][2] == 'b' &&
+             argv[4][3] == 'l' &&
+             argv[4][4] == 'e') {
+            // Convert the char* to a size_t for columns
+            size_t columns = atoi(argv[6]);
+            // Get the length of the table name
+            size_t len = 0;
+            while(argv[len] != 0) {
+              len++;
+            }
+            // Append our new table to the file!
+            new_table(f, argv[5], len, columns);
+          }
+          else {
+            cli_help();
+          }
         }
         // minidb modify FILE resize table NAME COLUMNS
         else if(argv[3][0] == 'r' &&
