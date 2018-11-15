@@ -34,7 +34,7 @@ void stat(FILE* f);
 // Past Versions:
 //
 const char* version = "Silicon Dioxide"; //i.e. Sand. It's weak and crumbly.
-const size_t version_no = 0;
+const size_t version_no = 1;
 
 void cli_help();
 
