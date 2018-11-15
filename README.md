@@ -8,6 +8,8 @@ A tiny database engine.
 
 This project is currently unfit for any purpose.
 
+Current testing status: [![Build Status](https://travis-ci.com/shakna-israel/minidb.svg?branch=master)](https://travis-ci.com/shakna-israel/minidb)
+
 ---
 
 # License
