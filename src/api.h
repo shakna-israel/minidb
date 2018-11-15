@@ -8,6 +8,7 @@
 #define ESC 27
 #define END_TEXT 3
 #define EOT 4
+#define EMPTY_COLUMN 24
 
 //Schema:
 //GROUP_SEP->END_TEXT = TableName

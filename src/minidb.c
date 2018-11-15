@@ -173,8 +173,41 @@ int main(int argc, char* argv[]) {
       }
     }
     // minidb modify FILE new table NAME COLUMNS
-    // minidb modify FILE rename table NAME
     // minidb modify FILE resize table NAME COLUMNS
+    else if(argc == 7) {
+      if(argv[1][0] == 'm' &&
+         argv[1][1] == 'o' &&
+         argv[1][2] == 'd' &&
+         argv[1][3] == 'i' &&
+         argv[1][4] == 'f' &&
+         argv[1][5] == 'y') {
+        FILE* f = fopen(argv[2], "w");
+        if(f == NULL) {
+          fprintf(stderr, "%s\n", "Unable to open file for modification. Do you have permission?");
+          return 1;
+        }
+        if(!is_minidb(f)) {
+          fprintf(stderr, "%s\n", "Not a valid database file. Terminating.");
+          return 1;
+        }
+        // minidb modify FILE new table NAME COLUMNS
+        if(argv[3][0] == 'n' &&
+           argv[3][1] == 'e' &&
+           argv[3][2] == 'w') {
+          // TODO
+        }
+        // minidb modify FILE resize table NAME COLUMNS
+        else if(argv[3][0] == 'r' &&
+                argv[3][1] == 'e' &&
+                argv[3][2] == 's' &&
+                argv[3][3] == 'i' &&
+                argv[3][4] == 'z' &&
+                argv[3][5] == 'e') {
+          // TODO
+        }
+      }
+    }
+    // minidb modify FILE rename table NAME
   } else {
     cli_help();
   }
