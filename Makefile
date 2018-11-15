@@ -1,5 +1,5 @@
 all:
-	$(CC) -o minidb src/minidb.c -Isrc
+	$(CC) -std=c99 -o minidb src/minidb.c -Isrc
 
 .PHONY: test
 test:

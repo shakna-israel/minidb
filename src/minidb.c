@@ -119,8 +119,8 @@ void stat(FILE* f) {
 
   printf("%s\n", "File Statistics:");
   if(isdb) {
-    printf("%s%d\n", "Tables: ", tables);
-    printf("%s%d\n", "Records: ", records);
+    printf("%s%zd\n", "Tables: ", tables);
+    printf("%s%zd\n", "Records: ", records);
   }
   else {
     printf("%s\n", "Not a valid miniDB database file.");
@@ -129,7 +129,7 @@ void stat(FILE* f) {
 
 void cli_help() {
   printf("%s\n", "miniDB - Help");
-  printf("%s%s - %d\n", "Version: ", version, version_no);
+  printf("%s%s - %zd\n", "Version: ", version, version_no);
 }
 
 int main(int argc, char* argv[]) {
